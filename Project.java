@@ -3,14 +3,19 @@
 
 // She also needs each project to be able to give an elevator pitch that will return the name and description separated by a colon.
 
+
 public class Project{
     // Create a Project class that has the fields of name and description.
     private String name;
     private String desc;
+    // Add an additional initialCost member variable that is of type double and has both getters and setters
+    private double initialCost;
+    private String pitch;
 
     // Create an instance method called elevatorPitch that will return the name and description separated by a colon.
+    // Add this to the elevator pitch in parentheses after the name, e.g.: name (cost): description
     public String elevatorPitch(){
-        return this.name +": " + this.desc;
+        return this.name + " ($" + this.initialCost + "): " + this.desc;
     }
 
 /////////////////////////////////////////////////////////////////
@@ -20,16 +25,40 @@ public class Project{
     public Project(){
         setName("");
         setDesc("");
+        setCost(0);
+        this.pitch = elevatorPitch();
+
+        //create object
+        setObject(this.name, this.desc, this.initialCost, this.pitch);
+
     }
 
     public Project(String name) {
         setName(name);
         setDesc("");
+        this.pitch = elevatorPitch();
+
+        //create object
+        setObject(this.name, this.desc, this.initialCost, this.pitch);
     }
 
     public Project(String name, String desc) {
         setName(name);
         setDesc(desc);
+        this.pitch = elevatorPitch();
+
+        //create object
+        setObject(this.name, this.desc, this.initialCost, this.pitch);
+    }
+
+    public Project(String name, String desc, double cost) {
+        setName(name);
+        setDesc(desc);
+        setCost(cost);
+        this.pitch = elevatorPitch();
+
+        //create object
+        setObject(this.name, this.desc, this.initialCost, this.pitch);
     }
 
     ////////////////////////////////////////////////////////////
@@ -48,62 +77,32 @@ public class Project{
     public String getDesc(){
         return this.desc;
     }
+
+    public void setCost(double cost){
+        this.initialCost = cost;
+    }
+    public double getCost(){
+        return this.initialCost;
+    }
     ////////////////////////////////////////////////////////////
 
+    // Create a Portfolio class that will keep an ArrayList of Projects in the field projects. Use generics to ensure these are Project objects.    
 
+    private Object[] project = new Object[4];
 
+    //setter
+    public void setObject(String name, String desc, double cost, String pitch){
+        project[0] = name;
+        project[1] = desc;
+        project[2] = cost; 
+        project[3] = pitch;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //getter
+    public Object[] getObject(){
+        return this.project;
+    }
     
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Optional Challenges:
-// Add an additional initialCost member variable that is of type double and has both getters and setters
-
-// Add this to the elevator pitch in parentheses after the name, e.g.: name (cost): description
-
-// Create a Portfolio class that will keep an ArrayList of Projects in the field projects. Use generics to ensure these are Project objects.
-
-// Add the appropriate getters/setters/constructors for this class to work
-
-// Add the getPortfolioCost method that calculates and returns the cost to buy the entire portfolio.
-
-// Add the showPortfolio method that will print all the project elevator pitches, followed by the total cost.
